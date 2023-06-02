@@ -49,6 +49,7 @@ const Main = () => {
           onChange={(e) =>
             setInputValues({ ...inputValues, [e.target.name]: e.target.value })
           }
+          required
         />
         {showPassword && (
           <input
@@ -62,6 +63,7 @@ const Main = () => {
                 [e.target.name]: e.target.value,
               })
             }
+            required
           />
         )}
         {!showPassword && (
@@ -70,7 +72,7 @@ const Main = () => {
           </Button>
         )}
       </Form>
-      <LoginOut onClick={handleLogin}>Login</LoginOut>
+      {showPassword && <LoginOut onClick={handleLogin}>Signup</LoginOut>}
     </MainContainer>
   );
 };
@@ -98,9 +100,9 @@ const MainContainer = styled.main`
 const Form = styled.form`
   display: grid;
   grid-template-columns: ${({ showPassword }) =>
-    !showPassword ? "2fr 1fr" : " 1fr 1fr"};
+    !showPassword ? "2fr 1fr" : " 1fr"};
   text-align: center;
-  width: 70%;
+  width: 50%;
 
   input {
     padding: 1.2rem;
