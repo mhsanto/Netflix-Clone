@@ -16,6 +16,7 @@ const navLinks = [
   { name: "My list", link: "/my-list" },
 ];
 
+// eslint-disable-next-line react/prop-types
 const Navbar = ({ isScrolled }) => {
   const [showSearch, setShowSearch] = useState(false);
   const [hoverInput, setHoverInput] = useState(false);
@@ -73,18 +74,26 @@ const Navbar = ({ isScrolled }) => {
 };
 
 const Nav = styled.nav`
+  position: sticky;
+  top: 0;
+
   .scroll {
-    background-color: #fff;
+    background-color: black;
+    width: 100%;
+    height: 4rem;
+    background-color: black;
+    position: fixed;
+    top: 0;
   }
   .container {
     display: flex;
     justify-content: space-between;
-    padding-top: 1.5rem;
+    padding-top: 0.5rem;
   }
 `;
 const LogoSection = styled.div`
   display: flex;
-  align-items: center;
+  padding-top: 0.8rem;
 `;
 const Img = styled.img`
   width: 120px;
@@ -130,12 +139,19 @@ const Search = styled.div`
   }
   input {
     width: 0;
+    border: 0;
+    outline: 0;
+    opacity: 0;
     visibility: hidden;
     transition: width 0.3s ease;
     background-color: transparent;
     border: none;
     &:focus {
       outline: none;
+      width: 0;
+      border: 0;
+      outline: 0;
+      opacity: 0;
     }
   }
   .show-search {
@@ -146,6 +162,7 @@ const Search = styled.div`
       width: 100%;
       visibility: visible;
       padding: 0.3rem;
+      opacity: 1;
     }
   }
 `;

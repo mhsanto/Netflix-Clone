@@ -35,6 +35,13 @@ export const GlobalStyle = createGlobalStyle`
     ul,li{
       list-style: none;
     }
+    .flex{
+      display: flex;
+    }
+    .flex-direction{
+
+      flex-direction: column;
+    }
 `;
 export const Container = styled.div`
   padding: 0 4rem;
