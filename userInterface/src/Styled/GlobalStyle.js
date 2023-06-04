@@ -29,6 +29,12 @@ export const GlobalStyle = createGlobalStyle`
     button{
       cursor: pointer;
     }
+    a{
+      text-decoration: none;
+    }
+    ul,li{
+      list-style: none;
+    }
 `;
 export const Container = styled.div`
   padding: 0 4rem;

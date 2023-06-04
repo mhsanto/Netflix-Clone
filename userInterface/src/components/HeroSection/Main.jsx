@@ -1,5 +1,4 @@
 import styled from "styled-components";
-import "./inputStyle.css";
 import { useState } from "react";
 import { MdArrowForwardIos } from "react-icons/md";
 import {
