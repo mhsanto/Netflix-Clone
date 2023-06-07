@@ -1,12 +1,24 @@
-import { useState } from "react";
+// internal imports
+import { useEffect, useState } from "react";
+import styled from "styled-components";
+import { useDispatch } from "react-redux";
+// components
 import Navbar from "../components/Navbar/Navbar";
 import BackgroundImg from "../assets/StrangerThingsPage.jpg";
 import BackgroundImgName from "../assets/strangerThings.png";
-import styled from "styled-components";
 import { FaPlay, FaInfo } from "react-icons/fa";
 import { Container } from "../Styled/GlobalStyle";
+import { useNavigate } from "react-router-dom";
+import { fetchGenre } from "../store/store";
+
 const Netflix = () => {
   const [isScrolled, setIsScrolled] = useState(false);
+  const dispatch = useDispatch();
+
+  const navigate = useNavigate();
+  useEffect(() => {
+    dispatch(fetchGenre());
+  }, []);
   window.onscroll = () => {
     setIsScrolled(window.pageYOffset === 0 ? false : true);
     return () => setIsScrolled(window.pageYOffset === null);
@@ -43,7 +55,7 @@ const Netflix = () => {
               </div>
             </Details>
             <Play>
-              <button>
+              <button onClick={() => navigate("/player")}>
                 <FaPlay />
                 Play
               </button>
@@ -96,6 +108,9 @@ const Background = styled.div`
   overflow: hidden;
   background: #000;
   z-index: -1;
+  @media (max-width: 1200px) {
+    width: 100%;
+  }
   img {
     width: 100%;
   }
