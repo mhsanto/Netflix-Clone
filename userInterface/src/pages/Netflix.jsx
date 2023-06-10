@@ -20,19 +20,19 @@ const Netflix = () => {
   const dispatch = useDispatch();
 
   const navigate = useNavigate();
-
+  const genres = useSelector((state) => state.netflix.genres);
   useEffect(() => {
     dispatch(fetchGenre());
   }, []);
 
   useEffect(() => {
-    dispatch(fetchMovies({ type: "all" }));
-  }, []);
+    if (genresLoaded) dispatch(fetchMovies({ genres, type: "all" }));
+  }, [genresLoaded]);
 
   // change navbar color when scrolled
   window.onscroll = () => {
     setIsScrolled(window.scrollY === 0 ? false : true);
-    return () => setIsScrolled(window.pageYOffset === null);
+    return () => setIsScrolled(window.scrollY === null);
   };
   return (
     <NetflixSection>

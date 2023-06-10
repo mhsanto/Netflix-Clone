@@ -16,10 +16,21 @@ const Card = ({ MovieData, alt, title, isLiked = false }) => {
   const [like, setLike] = useState(false);
   const [dislike, setDislike] = useState(false);
   const navigate = useNavigate();
+  let timeoutID;
+  const delayOnHover = () => {
+    clearTimeout(timeoutID);
+    timeoutID = setTimeout(() => {
+      setShowPlayer(true);
+    }, 350);
+  };
+  const clearDelayHover = () => {
+    clearTimeout(timeoutID);
+    setShowPlayer(false);
+  };
   return (
     <Container
-      onMouseEnter={() => setShowPlayer(true)}
-      onMouseLeave={() => setShowPlayer(false)}
+      onMouseEnter={delayOnHover}
+      onMouseLeave={clearDelayHover}
       showPlayer={showPlayer}
     >
       <img

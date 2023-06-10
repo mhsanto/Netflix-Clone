@@ -80,7 +80,7 @@ const Nav = styled.nav`
   height: 4rem;
   .scroll {
     width: 100%;
-    height: 4.5rem;
+    height: 4rem;
     background-color: black;
     top: 0;
     position: fixed;

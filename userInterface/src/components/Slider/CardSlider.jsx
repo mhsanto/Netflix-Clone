@@ -58,6 +58,8 @@ const Flex = styled.div`
   gap: 1rem;
   h2 {
     font-style: italic;
+    padding-bottom: 1rem 0;
+    padding-top: 0.5rem;
   }
   .gap {
     gap: 1rem;

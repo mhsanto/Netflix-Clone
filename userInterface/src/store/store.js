@@ -38,7 +38,7 @@ const creatingArrayFromGetRawData = (results, moviesArray, genres) => {
   });
 };
 
-const getRawData = async (api, genres, paging) => {
+const getRawData = async (api, genres, paging = false) => {
   const moviesArray = [];
   for (let i = 1; moviesArray.length < 60 && i < 10; i++) {
     const {
@@ -67,6 +67,21 @@ export const fetchMovies = createAsyncThunk(
     );
   }
 );
+
+export const fetchMoviesByGenre = createAsyncThunk(
+  "netflix/selectGenre",
+  async ({ genre, type }, thunkAPI) => {
+    const {
+      netflix: { genres },
+    } = thunkAPI.getState();
+    console.log(genre);
+    return getRawData(
+      `${THE_MOVIE_DB_URL}/discover/${type}/?api_key=${MOVIE_API}&with_genres=${genre}`,
+      genres
+    );
+  }
+);
+
 /* `const NetflixSlice = createSlice({` is creating a Redux slice using the `createSlice` function from
 the Redux Toolkit library. */
 const NetflixSlice = createSlice({
@@ -79,6 +94,9 @@ const NetflixSlice = createSlice({
       state.loadGenres = true;
     });
     builder.addCase(fetchMovies.fulfilled, (state, action) => {
+      state.movies = action.payload;
+    });
+    builder.addCase(fetchMoviesByGenre.fulfilled, (state, action) => {
       state.movies = action.payload;
     });
   },
