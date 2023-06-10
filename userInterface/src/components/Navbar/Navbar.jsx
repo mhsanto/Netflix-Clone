@@ -25,8 +25,8 @@ const Navbar = ({ isScrolled }) => {
     if (!currentUser) navigate("/login");
   });
   return (
-    <Nav className={`${isScrolled ? "scroll" : ""}`}>
-      <Container className="container">
+    <Nav isScrolled={isScrolled} className="">
+      <Container className={`${isScrolled ? "scroll" : ""} container`}>
         <LogoSection>
           <Link to="/">
             <Img src={Logo} alt="Netflix Logo" />
@@ -75,20 +75,22 @@ const Navbar = ({ isScrolled }) => {
 
 const Nav = styled.nav`
   position: sticky;
+  z-index: 10000;
   top: 0;
-
+  height: 4rem;
   .scroll {
-    background-color: black;
     width: 100%;
-    height: 4rem;
+    height: 4.5rem;
     background-color: black;
-    position: fixed;
     top: 0;
+    position: fixed;
+    z-index: 10000;
   }
   .container {
     display: flex;
     justify-content: space-between;
     padding-top: 0.5rem;
+    flex-wrap: nowrap;
   }
 `;
 const LogoSection = styled.div`

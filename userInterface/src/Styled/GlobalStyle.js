@@ -22,10 +22,7 @@ export const GlobalStyle = createGlobalStyle`
       color: var(--text-color);
       overflow-x: hidden ;
     }
-    img{
-      max-width: 100%;
-      object-fit: cover;
-    }
+   
     button{
       cursor: pointer;
     }
@@ -47,5 +44,5 @@ export const Container = styled.div`
   padding: 0 4rem;
   margin-inline: auto;
   position: relative;
-  z-index: 1000;
+  z-index: 10;
 `;

@@ -1,7 +1,7 @@
 import { initializeApp } from "firebase/app";
 import { getAuth } from "firebase/auth";
 const firebaseConfig = {
-  apiKey: "AIzaSyCS_V6kiyN6-DzGuHVfGTCfqR8V8J4a-qc",
+  apiKey: import.meta.env.VITE_FIREBASE_API_KEY,
   authDomain: "netflix-clone-92.firebaseapp.com",
   projectId: "netflix-clone-92",
   storageBucket: "netflix-clone-92.appspot.com",
