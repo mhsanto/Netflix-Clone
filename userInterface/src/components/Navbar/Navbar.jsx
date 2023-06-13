@@ -11,9 +11,9 @@ import { firebaseAuth } from "../../utilities/firebase";
 
 const navLinks = [
   { name: "Home", link: "/", active: "active" },
-  { name: "TV shows", link: "/tv" },
+  { name: "TV shows", link: "/shows" },
   { name: "Movies", link: "/movies" },
-  { name: "My list", link: "/my-list" },
+  { name: "My list", link: "/mylist" },
 ];
 
 // eslint-disable-next-line react/prop-types

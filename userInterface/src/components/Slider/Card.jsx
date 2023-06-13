@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import styled from "styled-components";
+import axios from "axios";
 import video from "../../assets/John.MP4";
 import {
   AiOutlineLike,
@@ -7,15 +8,22 @@ import {
   AiOutlinePlus,
   AiFillLike,
   AiFillDislike,
+  AiOutlineCheck,
   AiOutlineDislike,
 } from "react-icons/ai";
 import { BiDislike } from "react-icons/bi";
 import { useNavigate } from "react-router-dom";
-const Card = ({ MovieData, alt, title, isLiked = false }) => {
+import { onAuthStateChanged } from "firebase/auth";
+import { firebaseAuth } from "../../utilities/firebase";
+const Card = ({ MovieData, alt, title, isLiked }) => {
   const [showPlayer, setShowPlayer] = useState(false);
+  const [email, setEmail] = useState(undefined);
   const [like, setLike] = useState(false);
   const [dislike, setDislike] = useState(false);
   const navigate = useNavigate();
+  onAuthStateChanged(firebaseAuth, (currentUser) => {
+    currentUser ? setEmail(currentUser.email) : navigate("/login");
+  });
   let timeoutID;
   const delayOnHover = () => {
     clearTimeout(timeoutID);
@@ -26,6 +34,16 @@ const Card = ({ MovieData, alt, title, isLiked = false }) => {
   const clearDelayHover = () => {
     clearTimeout(timeoutID);
     setShowPlayer(false);
+  };
+  const addToList = async () => {
+    try {
+      await axios.post("http://localhost:3001/api/user/add", {
+        email,
+        data: MovieData,
+      });
+    } catch (error) {
+      console.log(error);
+    }
   };
   return (
     <Container
@@ -84,7 +102,12 @@ const Card = ({ MovieData, alt, title, isLiked = false }) => {
                     <AiFillDislike onClick={() => setDislike(false)} />
                   )}
                 </div>
-                <AiOutlinePlus />
+                {isLiked && (
+                  <AiOutlineCheck title="Add to my list" onClick={addToList} />
+                )}
+                {!isLiked && (
+                  <AiOutlinePlus title="Add to my list" onClick={addToList} />
+                )}
               </Icons>
               <div className="flex" style={{ padding: "0 0 1rem 1rem" }}>
                 {MovieData.genres.map((genre, i) => (
@@ -141,11 +164,11 @@ const HoverImageVideo = styled.div`
 const Container = styled.div`
   position: relative;
   .image {
-    width: 250px;
+    width: 220px;
     object-fit: cover;
     cursor: pointer;
     &:hover {
-      opacity: ${({ showPlayer }) => (showPlayer ? 0.2 : 1)};
+      opacity: ${({ showPlayer }) => (showPlayer === true ? 0.2 : 1)};
     }
   }
 `;

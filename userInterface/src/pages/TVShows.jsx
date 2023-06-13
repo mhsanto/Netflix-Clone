@@ -16,12 +16,14 @@ const Movies = () => {
   const genres = useSelector((state) => state.netflix.genres);
   const dispatch = useDispatch();
 
+  const navigate = useNavigate();
+
   useEffect(() => {
     dispatch(fetchGenre());
   }, []);
 
   useEffect(() => {
-    if (genresLoaded) dispatch(fetchMovies({ genres, type: "movie" }));
+    if (genresLoaded) dispatch(fetchMovies({ genres, type: "tv" }));
   }, [genresLoaded]);
 
   return (
@@ -29,7 +31,7 @@ const Movies = () => {
       <Navbar isScrolled={isScrolled} />
 
       <Container>
-        <ShowGenres genres={genres} type="movie" />
+        <ShowGenres genres={genres} type="tv" />
       </Container>
       <MoviesSection>
         {movies.length ? (

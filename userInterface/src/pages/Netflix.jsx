@@ -11,9 +11,10 @@ import { Container } from "../Styled/GlobalStyle";
 import { useNavigate } from "react-router-dom";
 import { fetchGenre, fetchMovies } from "../store/store";
 import Slider from "../components/Slider/Slider";
+import useNavbarColorChange from "../customHooks/useNavbarColorChange";
 
 const Netflix = () => {
-  const [isScrolled, setIsScrolled] = useState(true);
+  const isScrolled = useNavbarColorChange();
   const genresLoaded = useSelector((state) => state.netflix.loadGenres);
   const movies = useSelector((state) => state.netflix.movies);
 
@@ -30,10 +31,7 @@ const Netflix = () => {
   }, [genresLoaded]);
 
   // change navbar color when scrolled
-  window.onscroll = () => {
-    setIsScrolled(window.scrollY === 0 ? false : true);
-    return () => setIsScrolled(window.scrollY === null);
-  };
+
   return (
     <NetflixSection>
       <Navbar isScrolled={isScrolled} />

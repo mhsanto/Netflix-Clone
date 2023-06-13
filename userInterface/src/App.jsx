@@ -5,6 +5,8 @@ import Netflix from "./pages/Netflix";
 import { GlobalStyle } from "./Styled/GlobalStyle";
 import VideoPlayer from "./pages/VideoPlayer";
 import Movies from "./pages/Movies";
+import TVShows from "./pages/TVShows";
+import MyList from "./pages/MyList";
 
 const App = () => {
   return (
@@ -16,6 +18,8 @@ const App = () => {
         <Route path="/signup" element={<Signup />} />
         <Route path="/player" element={<VideoPlayer />} />
         <Route path="/movies" element={<Movies />} />
+        <Route path="/shows" element={<TVShows />} />
+        <Route path="/mylist" element={<MyList />} />
       </Routes>
     </>
   );
