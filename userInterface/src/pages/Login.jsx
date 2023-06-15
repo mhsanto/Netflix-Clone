@@ -2,7 +2,7 @@ import styled from "styled-components";
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import Background from "../components/HeroSection/Background";
-import Logo from "../assets/netflixLogo.png";
+import Logo from "../assets/logo.png";
 import { signInWithEmailAndPassword } from "firebase/auth";
 import { firebaseAuth } from "../utilities/firebase";
 const Login = () => {
