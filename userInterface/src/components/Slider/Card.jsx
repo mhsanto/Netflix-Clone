@@ -61,7 +61,7 @@ const Card = ({ MovieData, alt, title, isLiked }) => {
       {showPlayer && (
         <ShowPlayer>
           <HoverImageVideo className="hover">
-            {/* <video
+            <video
               className="video"
               src={video}
               alt={alt}
@@ -69,13 +69,8 @@ const Card = ({ MovieData, alt, title, isLiked }) => {
               muted
               onClick={() => navigate("/player")}
               loop
-            /> */}
-            <img
-              className="hoverImage"
-              src={`https://image.tmdb.org/t/p/w500${MovieData.image}`}
-              alt={alt}
-              onClick={() => navigate("/player")}
             />
+
             <div className="info">
               <h2>{alt}</h2>
               <Icons>
@@ -124,9 +119,11 @@ const Card = ({ MovieData, alt, title, isLiked }) => {
 const Icons = styled.div`
   display: flex;
   align-items: center;
-  font-size: 1.9rem;
+  font-size: clamp(0.9rem, 1.3rem, 1.4rem);
+
   gap: 1rem;
   padding: 1rem;
+  flex-wrap: wrap;
   & > * {
     cursor: pointer;
   }
@@ -138,8 +135,10 @@ const Icons = styled.div`
 const ShowPlayer = styled.div`
   position: relative;
   .info h2 {
-    font-size: 1.4rem;
+    font-size: clamp(0.9rem, 1.3rem, 1.4rem);
     padding: 0 1rem;
+    @media (max-width: 640px) {
+    }
   }
 `;
 const HoverImageVideo = styled.div`
@@ -152,6 +151,9 @@ const HoverImageVideo = styled.div`
   z-index: 50;
   transition: 5s;
   background-color: rgba(252, 0, 0, 0.8);
+  @media (max-width: 640px) {
+    width: 180px;
+  }
   .hoverImage {
     width: 100%;
     cursor: pointer;
@@ -169,6 +171,9 @@ const Container = styled.div`
     cursor: pointer;
     &:hover {
       opacity: ${({ showPlayer }) => (showPlayer === true ? 0.2 : 1)};
+    }
+    @media (max-width: 640px) {
+      width: 180px;
     }
   }
 `;

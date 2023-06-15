@@ -77,7 +77,6 @@ const Nav = styled.nav`
   position: sticky;
   z-index: 10000;
   top: 0;
-  height: 4rem;
   .scroll {
     width: 100%;
     height: 4rem;
@@ -85,12 +84,19 @@ const Nav = styled.nav`
     top: 0;
     position: fixed;
     z-index: 10000;
+    @media (max-width: 1200px) {
+      height: 3rem;
+      position: static;
+    }
   }
   .container {
     display: flex;
     justify-content: space-between;
-    padding-top: 0.5rem;
+    padding-top: 0.8rem;
     flex-wrap: nowrap;
+    @media (max-width: 960px) {
+      padding-top: 0.2rem;
+    }
   }
 `;
 const LogoSection = styled.div`
@@ -98,7 +104,10 @@ const LogoSection = styled.div`
   padding-top: 0.8rem;
 `;
 const Img = styled.img`
-  width: 120px;
+  width: 7.5rem;
+  @media (max-width: 960px) {
+    width: clamp(2rem, 5rem, 5.9rem);
+  }
 `;
 const Search = styled.div`
   display: flex;
@@ -120,9 +129,12 @@ const Search = styled.div`
       }
       svg {
         color: white;
-        font-size: 1.2rem;
+        font-size: 1.3rem;
         &:focus {
           background-color: red;
+        }
+        @media (max-width: 960px) {
+          font-size: 1rem;
         }
       }
     }
@@ -137,6 +149,10 @@ const Search = styled.div`
     svg {
       color: white;
       font-size: 1.3rem;
+
+      @media (max-width: 960px) {
+        font-size: 1rem;
+      }
     }
   }
   input {
@@ -171,13 +187,26 @@ const Search = styled.div`
 const Ul = styled.ul`
   display: flex;
   margin-left: 2rem;
-
+  flex-wrap: nowrap;
+  @media (max-width: 960px) {
+    margin-left: 1rem;
+  }
+  @media (max-width: 460px) {
+    margin-left: 0.5rem;
+  }
   a {
+    flex-shrink: 0;
     text-transform: capitalize;
     color: #b8b7b5;
     margin-right: 1rem;
     font-size: 0.95rem;
     font-weight: 600;
+    @media (max-width: 960px) {
+      font-size: clamp(0.6rem, 1vw, 0.8rem);
+    }
+    @media (max-width: 480px) {
+      margin-right: 0.5rem;
+    }
   }
   .active {
     color: white;

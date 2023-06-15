@@ -20,7 +20,7 @@ export const GlobalStyle = createGlobalStyle`
       background-color: var(--bg-color,black);
       font-family: var(--primary-font);
       color: var(--text-color);
-      overflow-x: hidden ;
+      overflow-x: hidden !important ;
     }
    
     button{
@@ -45,4 +45,10 @@ export const Container = styled.div`
   margin-inline: auto;
   position: relative;
   z-index: 10;
+  @media (max-width: 960px) {
+    padding: 0 2rem;
+  }
+  @media (max-width: 480px) {
+    padding: 0 0.8rem;
+  }
 `;

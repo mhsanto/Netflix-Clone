@@ -14,6 +14,7 @@ import Slider from "../components/Slider/Slider";
 import useNavbarColorChange from "../customHooks/useNavbarColorChange";
 
 const Netflix = () => {
+  const [moreInfo, setMoreInfo] = useState(false);
   const isScrolled = useNavbarColorChange();
   const genresLoaded = useSelector((state) => state.netflix.loadGenres);
   const movies = useSelector((state) => state.netflix.movies);
@@ -42,25 +43,33 @@ const Netflix = () => {
         <Container>
           <LeftPart>
             <img src={BackgroundImgName} alt="Stranger Things" />
-            <Details>
+            <Details moreInfo={moreInfo}>
               <h3>Stranger Things</h3>
               <p className="seasons">
                 2016 | <span>16+</span>| 4 Seasons | Sci-Fi
               </p>
-              <p>
+              <Para>
                 When a young boy vanishes, a small town uncovers a mystery
                 involving secret experiments, terrifying supernatural forces and
                 one strange little girl.
-              </p>
+              </Para>
               <div>
-                <div className="flex">
-                  <span>Starring: </span>
-                  <p>&nbsp; Winona Ryder, David Harbour, Millie Bobby Brown</p>
-                </div>
-                <div className="flex">
-                  <span>Creators:</span>
-                  <p> &nbsp;The Duffer Brothers</p>
-                </div>
+                {moreInfo ? (
+                  <>
+                    <div className="flex none">
+                      <span>Starring: </span>
+                      <Para2>
+                        &nbsp; Winona Ryder, David Harbour, Millie Bobby Brown
+                      </Para2>
+                    </div>
+                    <div className="flex none">
+                      <span>Creators:</span>
+                      <Para2> &nbsp;The Duffer Brothers</Para2>
+                    </div>
+                  </>
+                ) : (
+                  ""
+                )}
               </div>
             </Details>
             <Play>
@@ -68,7 +77,7 @@ const Netflix = () => {
                 <FaPlay />
                 Play
               </button>
-              <button>
+              <button onClick={() => setMoreInfo(!moreInfo)}>
                 <FaInfo />
                 More Info
               </button>
@@ -83,11 +92,12 @@ const Netflix = () => {
 const NetflixSection = styled.section`
   position: relative;
   height: 100vh;
-  width: 100vw;
+  width: 100%;
 `;
 const Play = styled.div`
   display: flex;
-
+  padding-bottom: 2rem;
+  padding-top: 1rem;
   button {
     display: flex;
     margin-right: 1rem;
@@ -107,6 +117,10 @@ const Play = styled.div`
       background-color: rgba(255, 255, 255, 0.3);
       color: white;
     }
+    @media (max-width: 1200px) {
+      font-size: 0.9rem;
+      padding: 0.5rem 0.9rem;
+    }
   }
 `;
 const Background = styled.div`
@@ -114,22 +128,52 @@ const Background = styled.div`
   top: 0;
   right: 0;
   max-width: 80%;
-  height: 100vh;
-  overflow: hidden;
+  max-height: max-content;
   background: #000;
   z-index: -1;
-  @media (max-width: 1200px) {
-    width: 100%;
+  overflow-x: hidden;
+  @media (max-width: 480px) {
+    max-width: 100%;
+  }
+  @media (max-width: 640px) {
+    max-width: 100%;
   }
   img {
     width: 100%;
+    height: max-content;
+    @media (max-width: 960px) {
+      width: 100vw;
+      object-fit: cover;
+    }
+    @media (max-width: 680px) {
+      width: 100vw;
+      height: 90vh;
+
+      object-fit: cover;
+    }
+  }
+  @media (max-width: 480px) {
+    top: 5%;
   }
 `;
-const Hero = styled.div``;
+const Hero = styled.div`
+  height: max-content;
+  padding-top: 4.5rem;
+
+  @media (max-width: 960px) {
+    padding-top: 2rem;
+  }
+`;
+const Para = styled.p`
+  @media (max-width: 960px) {
+    font-size: 0.89rem;
+  }
+`;
 
 const Details = styled.div`
-  display: grid;
-  gap: 1.2rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
   .seasons {
     font-size: 0.9rem;
     color: #a3a39f;
@@ -139,19 +183,43 @@ const Details = styled.div`
   }
   h3 {
     font-size: 1.4rem;
+    @media (max-width: 960px) {
+      font-size: 1.2rem;
+    }
   }
+
   span {
     color: #a3a39f;
+    @media (max-width: 960px) {
+      font-size: 0.8rem;
+    }
   }
 `;
+const Para2 = styled.p``;
 const LeftPart = styled.div`
   position: relative;
-  width: 450px;
+  width: 28.125rem;
   display: flex;
   flex-direction: column;
-  height: 90vh;
-  gap: 4rem;
   justify-content: center;
+  gap: 1.5rem;
+  img {
+    padding-bottom: 2rem;
+    @media (max-width: 960px) {
+      padding-bottom: 0.5rem;
+      width: clamp(12rem, 19rem, 20rem);
+      gap: 1.5rem;
+    }
+  }
+  @media (max-width: 960px) {
+    padding-top: 1rem;
+    width: clamp(5rem, 19rem, 20rem);
+    gap: 1.5rem;
+  }
+  @media (max-width: 480px) {
+    padding-top: 1rem;
+    gap: 0em;
+  }
 `;
 
 export default Netflix;

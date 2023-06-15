@@ -35,7 +35,7 @@ const Login = () => {
 
   return (
     <>
-      <Link to="/">
+      <Link to="/signup">
         <Img src={Logo} alt="Netflix Logo" />
       </Link>
       <Background />
@@ -120,6 +120,7 @@ const Login = () => {
 const LoginSection = styled.section`
   display: grid;
   place-content: center;
+  overflow: hidden;
   height: 100vh;
 `;
 const MainContainer = styled.main`

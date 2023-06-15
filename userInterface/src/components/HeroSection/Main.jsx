@@ -83,27 +83,35 @@ const MainContainer = styled.main`
   align-items: center;
   gap: 1.5rem;
   h1 {
-    font-size: 48px;
+    font-size: clamp(1.75rem, calc(1.32rem + 2.17vw), 3rem);
     font-weight: 700;
+    @media (max-width: 768px) {
+      text-align: center;
+    }
   }
   h4 {
-    font-size: 24px;
+    font-size: clamp(1rem, calc(0.83rem + 0.87vw), 1.5rem);
 
     text-align: center;
   }
   p {
-    font-size: 20px;
+    font-size: clamp(0.94rem, calc(0.83rem + 0.54vw), 1.25rem);
     text-align: center;
   }
 `;
 const Form = styled.form`
-  display: grid;
-  grid-template-columns: ${({ showPassword }) =>
-    !showPassword ? "2fr 1fr" : " 1fr"};
+  display: flex;
   text-align: center;
-  width: 50%;
+  overflow: hidden;
+  @media (max-width: 768px) {
+    flex-wrap: wrap;
+    gap: 1rem;
+  }
 
   input {
+    width: 100%;
+
+    width: min(100%, 30rem);
     padding: 1.2rem;
     background: rgba(0, 0, 0, 0.7);
     border-radius: 6px;
@@ -119,6 +127,7 @@ const Form = styled.form`
   }
 `;
 const Button = styled.button`
+  width: 18rem;
   background-color: var(--primary-color);
   font-size: 1.5rem;
   font-weight: 600;
@@ -130,6 +139,11 @@ const Button = styled.button`
   justify-content: center;
   align-items: center;
   cursor: pointer;
+  @media (max-width: 768px) {
+    flex-grow: 1;
+    width: min(100%, 24rem);
+    padding: 0.5rem 0;
+  }
 `;
 const LoginOut = styled.button`
   padding: 0.6rem 2rem;
