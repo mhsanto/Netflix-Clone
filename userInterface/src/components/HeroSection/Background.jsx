@@ -1,4 +1,4 @@
-import BackgroundIMG from "../../assets/bg.jpg";
+import BackgroundIMG from "../../assets/BG.jpg";
 import styled from "styled-components";
 
 const Background = () => {
