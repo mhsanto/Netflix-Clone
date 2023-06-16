@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import styled from "styled-components";
 import axios from "axios";
-import video from "../../assets/John.MP4";
+import video from "../../assets/John.mp4";
 import {
   AiOutlineLike,
   AiFillPlayCircle,
