@@ -2,7 +2,7 @@ import styled from "styled-components";
 
 import { FaSearch } from "react-icons/fa";
 import { Link, useNavigate } from "react-router-dom";
-import Logo from "../../assets/netflixLogo.png";
+import Logo from "../../assets/logo.png";
 import { Container } from "../../Styled/GlobalStyle";
 import { onAuthStateChanged, signOut } from "firebase/auth";
 import { useState } from "react";
