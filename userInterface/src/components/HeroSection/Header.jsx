@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import NetflixLogo from "../../assets/netflixlogo.png";
+import NetflixLogo from "../../assets/logo.png";
 import { Container } from "../../Styled/GlobalStyle";
 import { useNavigate } from "react-router-dom";
 const Header = (props) => {
