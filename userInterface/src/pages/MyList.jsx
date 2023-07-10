@@ -18,7 +18,6 @@ const MyList = () => {
   const isScrolled = useNavbarColorChange();
   onAuthStateChanged(firebaseAuth, (currentUser) => {
     if (currentUser) setEmail(currentUser.email);
-    else navigate("/login");
   });
 
   useEffect(() => {

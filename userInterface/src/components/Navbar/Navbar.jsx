@@ -21,14 +21,12 @@ const Navbar = ({ isScrolled }) => {
   const [showSearch, setShowSearch] = useState(false);
   const [hoverInput, setHoverInput] = useState(false);
   const navigate = useNavigate();
-  onAuthStateChanged(firebaseAuth, (currentUser) => {
-    if (!currentUser) navigate("/login");
-  });
+
   return (
     <Nav isScrolled={isScrolled} className="">
       <Container className={`${isScrolled ? "scroll" : ""} container`}>
         <LogoSection>
-          <Link to="/">
+          <Link to="/signup">
             <Img src={Logo} alt="Netflix Logo" />
           </Link>
           <Ul>
@@ -64,7 +62,12 @@ const Navbar = ({ isScrolled }) => {
               }}
             />
           </div>
-          <button onClick={() => signOut(firebaseAuth)}>
+          <button
+            onClick={() => {
+              signOut(firebaseAuth);
+              navigate("/login");
+            }}
+          >
             <MdOutlineLogout />
           </button>
         </Search>

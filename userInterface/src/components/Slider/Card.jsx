@@ -22,7 +22,7 @@ const Card = ({ MovieData, alt, title, isLiked }) => {
   const [dislike, setDislike] = useState(false);
   const navigate = useNavigate();
   onAuthStateChanged(firebaseAuth, (currentUser) => {
-    currentUser ? setEmail(currentUser.email) : navigate("/login");
+    currentUser && setEmail(currentUser.email);
   });
   let timeoutID;
   const delayOnHover = () => {
@@ -61,7 +61,7 @@ const Card = ({ MovieData, alt, title, isLiked }) => {
       {showPlayer && (
         <ShowPlayer>
           <HoverImageVideo className="hover">
-            <video
+            {/* <video
               className="video"
               src={video}
               alt={alt}
@@ -69,6 +69,12 @@ const Card = ({ MovieData, alt, title, isLiked }) => {
               muted
               onClick={() => navigate("/player")}
               loop
+            /> */}
+            <img
+              className="video"
+              src={`https://image.tmdb.org/t/p/w500${MovieData.image}`}
+              alt={alt}
+              onClick={() => navigate("/player")}
             />
 
             <div className="info">
