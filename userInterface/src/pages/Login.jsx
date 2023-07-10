@@ -118,21 +118,26 @@ const Login = () => {
   );
 };
 const LoginSection = styled.section`
-  display: grid;
-  place-content: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   overflow: hidden;
   height: 100vh;
 `;
 const MainContainer = styled.main`
   background-color: rgba(0, 0, 0, 0.75);
-  display: grid;
-  place-content: center;
-  padding: 0 5rem;
-  width: 450px;
-  height: 640px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  padding: 6rem 5rem;
+  max-width: 100%;
   border-radius: 3px;
   position: relative;
-  z-index: 20;
+  z-index: 4;
+  @media (max-width: 560px) {
+    padding: 6rem 2rem;
+  }
   h1 {
     margin-bottom: 1.5rem;
     font-size: 35px;
@@ -161,6 +166,7 @@ const EmailSection = styled.div`
   flex-direction: column;
   gap: 0.5rem;
   color: #e87c03;
+
   span {
     font-size: 0.85rem;
     font-weight: 500;
@@ -188,7 +194,9 @@ const Form = styled.form`
   flex-direction: column;
   gap: 1rem;
   max-width: 312px;
+
   input {
+    flex: 1 1 100%;
     padding: 1rem 1.5rem;
     background: rgb(51, 51, 51);
     border-radius: 6px;

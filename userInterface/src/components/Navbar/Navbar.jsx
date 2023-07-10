@@ -105,6 +105,7 @@ const LogoSection = styled.div`
 `;
 const Img = styled.img`
   width: 7.5rem;
+  z-index: 50;
   @media (max-width: 960px) {
     width: clamp(2rem, 5rem, 5.9rem);
   }
