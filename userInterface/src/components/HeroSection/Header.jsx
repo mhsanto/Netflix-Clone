@@ -2,16 +2,16 @@ import styled from "styled-components";
 import NetflixLogo from "../../assets/logo.png";
 import { Container } from "../../Styled/GlobalStyle";
 import { useNavigate } from "react-router-dom";
-const Header = (props) => {
+const Header = ({ login }) => {
   const navigate = useNavigate();
   return (
     <Container>
       <HeaderSection>
         <Logo>
-          <img src={NetflixLogo} alt="" />
+          <img src={NetflixLogo} alt="netflix logo" />
         </Logo>
-        <Login onClick={() => navigate(props.login ? "/login" : "/signup")}>
-          {props.login ? "Login" : "Sign In"}
+        <Login onClick={() => navigate(login ? "/login" : "/signup")}>
+          {login ? "Login" : "Sign In"}
         </Login>
       </HeaderSection>
     </Container>

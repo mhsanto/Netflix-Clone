@@ -7,6 +7,7 @@ import {
 } from "firebase/auth";
 import { firebaseAuth } from "../../utilities/firebase";
 import { useNavigate } from "react-router-dom";
+import { useEffect } from "react";
 const Main = () => {
   /* Declaring two state variables using the `useState` hook. */
 
@@ -26,12 +27,14 @@ const Main = () => {
         inputValues.password
       );
     } catch (error) {
-      console.log(error);
+      console.error(error);
     }
   };
-  onAuthStateChanged(firebaseAuth, (currentUser) => {
-    if (currentUser) navigate("/");
-  });
+  useEffect(() => {
+    onAuthStateChanged(firebaseAuth, (currentUser) => {
+      if (currentUser) navigate("/");
+    });
+  }, []);
   return (
     <MainContainer showPassword={showPassword}>
       <h1>Unlimited movies, TV shows, and more</h1>
