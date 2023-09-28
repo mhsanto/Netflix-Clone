@@ -17,6 +17,7 @@ const Login = () => {
   const [password, setPassword] = useState("");
   const [showPasswordWarning, setShowPasswordWarning] = useState(false);
   const [showEmailWarning, setShowEmailWarning] = useState(false);
+  const navigate = useNavigate();
   const [showWarning, setShowWarning] = useState({
     email: "Please enter a valid email or phone number",
     password: " Your password must contain between 4 and 60 characters.",
@@ -30,8 +31,6 @@ const Login = () => {
     await signInWithEmailAndPassword(firebaseAuth, email, password);
     navigate("/");
   };
-
-  const navigate = useNavigate();
 
   return (
     <>

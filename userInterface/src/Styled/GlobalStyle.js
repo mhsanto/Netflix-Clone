@@ -10,7 +10,10 @@ export const GlobalStyle = createGlobalStyle`
     margin: 0;
     padding: 0;
     box-sizing:border-box;
-   
+    @media (max-width:480px) {
+      overflow-x: hidden;
+      
+    }
   }
   body::-webkit-scrollbar{
     display: none;
@@ -21,6 +24,9 @@ export const GlobalStyle = createGlobalStyle`
       font-family: var(--primary-font);
       color: var(--text-color);
       overflow-x: hidden !important ;
+      height: 100%;
+      width: 100%;
+      z-index: 999;
     }
    
     button{

@@ -1,4 +1,4 @@
-import React, { useRef, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import Card from "./Card";
 import styled from "styled-components";
 import { Container } from "../../Styled/GlobalStyle";
@@ -23,10 +23,17 @@ const CardSlider = ({ title, MovieSlice }) => {
       console.log(slidePosition);
     }
   };
+  useEffect(() => {
+    if (window.innerWidth <= 640) {
+      setShowControl(true);
+    }
+  });
   return (
     <Container
       onMouseEnter={() => setShowControl(true)}
       onMouseLeave={() => setShowControl(false)}
+      onTouchStart={() => setShowControl(true)}
+      onTouchEnd={() => setShowControl(false)}
     >
       <Flex>
         <h2>{title}</h2>
